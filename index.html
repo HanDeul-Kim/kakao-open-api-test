@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>카카오 지도 api</title>
-    
+
 </head>
+
 <body>
     <h1>Open API</h1>
     <div id="map" style="width:500px; height:400px;"></div>
 
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b65471b5b3eecc4dd74fd74bf3743b78"></script>    
-    
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b65471b5b3eecc4dd74fd74bf3743b78"></script>
+    <!-- 카카오 지도 api 라이브러리  -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services"></script>
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+
     <script>
         var container = document.getElementById('map');
         var options = {
@@ -21,6 +29,25 @@
         };
 
         var map = new kakao.maps.Map(container, options);
+
+        var markerPosition = new kakao.maps.LatLng(37.54252372651879, 127.05212996340991);
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+        marker.setMap(map);
+
+        var iwContent = '<div style="padding: 5px; width:100%; text-align:center;">여기 우리 회사!</div>'
+        var iwPosition = new kakao.maps.LatLng(37.54252372651879, 127.05212996340991);
+
+        var infowindow = new kakao.maps.InfoWindow({
+            position: iwPosition,
+            content: iwContent
+        });
+
+
+        infowindow.open(map, marker);
+
     </script>
 </body>
+
 </html>
